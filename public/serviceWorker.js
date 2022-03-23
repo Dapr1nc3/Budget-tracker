@@ -64,14 +64,13 @@ self.addEventListener("fetch", function (evt) {
   }
 
   evt.respondWith(
-    fetch(evt.request).catch(function () {
-      return caches.match(evt.request).then(function (response) {
-        if (response) {
-          return response;
-        } else if (evt.request.headers.get("accept").includes("text/html")) {
-          return caches.match("/");
-        }
-      });
+    fetch(evt.request).catch(async function () {
+      const response = await caches.match(evt.request);
+      if (response) {
+        return response;
+      } else if (evt.request.headers.get("accept").includes("text/html")) {
+        return caches.match("/");
+      }
     })
   );
 });
