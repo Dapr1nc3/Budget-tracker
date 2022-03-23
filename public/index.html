@@ -15,9 +15,23 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
     />
+    <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="css/styles.css" />
 
     <title>Budget Tracker</title>
+
+    <script type="text/javascript">
+      (function () {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => console.log("Service Worker registered successfully."))
+            .catch((error) =>
+              console.log("Service Worker registration failed:", error)
+            );
+        }
+      })();
+    </script>
   </head>
   <body>
     <div class="wrapper">
@@ -56,14 +70,5 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="js/index.js"></script>
     <script src="db.js"></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("service-worker.js").then((reg) => {
-            console.log("Your service file was found", reg);
-          });
-        });
-      }
-    </script>
   </body>
 </html>
