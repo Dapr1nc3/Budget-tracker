@@ -55,5 +55,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="js/index.js"></script>
+    <script src="db.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("serviceWorker.js").then((reg) => {
+            console.log("Your service file was found", reg);
+          });
+        });
+      }
+    </script>
   </body>
 </html>
